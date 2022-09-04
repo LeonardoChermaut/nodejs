@@ -1,9 +1,10 @@
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("postapp", "root", "#abc123#", {
+const sequelize = new Sequelize("articles", "root", "#abc123#", {
   host: "localhost",
   dialect: "mysql",
 });
+const db = {};
 
 sequelize
   .authenticate()
@@ -14,4 +15,7 @@ sequelize
     console.log("CONNECTION FAILED: " + error);
   });
 
-module.exports = { Sequelize: Sequelize, sequelize: sequelize };
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+module.exports = db;
